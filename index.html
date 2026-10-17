@@ -4,10 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My site</title>
+<style>
+  body {
+    font-family: "Times New Roman", Times, serif;
+  }
+  .font-bar {
+    text-align: center;
+    margin: 1rem 0;
+  }
+</style>
 </head>
 <body>
+<div class="font-bar">
+  <label for="font">Font</label>
+  <select id="font">
+    <option value='"Times New Roman", Times, serif' selected>Times New Roman</option>
+    <option value="Verdana, sans-serif">Verdana</option>
+    <option value='"Courier New", Courier, monospace'>Courier New</option>
+  </select>
+</div>
 <main id="page"></main>
 <script>
+var fontSelect = document.getElementById("font");
+fontSelect.addEventListener("change", function () {
+  document.body.style.fontFamily = fontSelect.value;
+});
+
 fetch("scriptures.txt")
   .then(function (response) {
     if (!response.ok) {
