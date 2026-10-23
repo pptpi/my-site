@@ -12,6 +12,9 @@
     text-align: center;
     margin: 1rem 0;
   }
+  #page {
+    white-space: pre-wrap;
+  }
 </style>
 </head>
 <body>
@@ -38,19 +41,7 @@ fetch("scriptures.txt")
     return response.text();
   })
   .then(function (text) {
-    var page = document.getElementById("page");
-    var blocks = text.trim().split(/\n\s*\n/);
-    blocks.forEach(function (block) {
-      var p = document.createElement("p");
-      var lines = block.split("\n");
-      lines.forEach(function (line, i) {
-        if (i > 0) {
-          p.appendChild(document.createElement("br"));
-        }
-        p.appendChild(document.createTextNode(line.trim()));
-      });
-      page.appendChild(p);
-    });
+    document.getElementById("page").textContent = text;
   })
   .catch(function () {
     document.body.textContent = "Could not load scriptures.txt.";
